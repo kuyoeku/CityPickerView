@@ -24,7 +24,7 @@ class CityPickerView: UIPickerView,UIPickerViewDelegate, UIPickerViewDataSource 
     var pickerController : PickerCellsController!
     
     
-    func initData(tableView : UITableView, pickerC : PickerCellsController,defaultValue : String = ""){
+    func initData(tableView : UITableView, pickerC : PickerCellsController,defaultValue : [String] = []){
         self.delegate = self
         self.dataSource = self
         dataArray = AreaFactory.getAreaArray()
@@ -39,8 +39,8 @@ class CityPickerView: UIPickerView,UIPickerViewDelegate, UIPickerViewDataSource 
         city = firstCitiesModel.state
         area = areaArray.firstObject as! String
         
-        if defaultValue != "" {
-            let str : [String] = defaultValue.componentsSeparatedByString(" ")
+        if defaultValue.count > 0 {
+            
             var provinceIndex : Int = 0
             var cityIndex : Int = 0
             var areaIndex : Int = 0
@@ -48,7 +48,7 @@ class CityPickerView: UIPickerView,UIPickerViewDelegate, UIPickerViewDataSource 
             dataArray.enumerateObjectsUsingBlock({
                 (item, idx, er) in
                 let currAreaModel : AreaModel = item as! AreaModel
-                if currAreaModel.state == str[0] {
+                if currAreaModel.state == defaultValue[0] {
                     provinceIndex = idx
                     self.cityArray = currAreaModel.cites
                 }
@@ -58,7 +58,7 @@ class CityPickerView: UIPickerView,UIPickerViewDelegate, UIPickerViewDataSource 
             cityArray.enumerateObjectsUsingBlock({
                 (item, idx, er) in
                 let currCitiesModel : AreaCitiesModel = item as! AreaCitiesModel
-                if currCitiesModel.state == str[1] {
+                if currCitiesModel.state == defaultValue[1] {
                     cityIndex = idx
                     self.areaArray = currCitiesModel.areas
                 }
@@ -68,18 +68,18 @@ class CityPickerView: UIPickerView,UIPickerViewDelegate, UIPickerViewDataSource 
             areaArray.enumerateObjectsUsingBlock({
                 (item, idx, er) in
                 let currArea : String = item as! String
-                if currArea == str[2] {
+                if currArea == defaultValue[2] {
                     areaIndex = idx
                 }
                 
             })
-            if str[1] == "" && cityIndex == 0 {
+            if defaultValue[1] == "" && cityIndex == 0 {
                 self.areaArray = NSArray()
             }
-            if str[2] == "" && areaIndex == 0 {
+            if defaultValue[2] == "" && areaIndex == 0 {
                 self.area = ""
             }
-            finalValue = defaultValue
+            finalValue = defaultValue[0] + " " + defaultValue[1] + " " + defaultValue[2]
             
             self.selectRow(provinceIndex, inComponent: 0, animated: false)
             self.selectRow(cityIndex, inComponent: 1, animated: false)

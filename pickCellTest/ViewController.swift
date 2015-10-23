@@ -31,8 +31,8 @@ class ViewController: UIViewController,UITableViewDataSource, UITableViewDelegat
         self.pickersController.attachToTableView(self.pickTableView, tableViewsPriorDelegate: self, withDelegate: self)
         
         let pickerView : CityPickerView = CityPickerView()
-        //默认值的省 市 区 以空格分割 例：浙江 杭州市 市辖区
-        pickerView.initData(pickTableView,pickerC: pickersController,defaultValue: "澳门  ")
+        //默认值的省 市 区
+        pickerView.initData(pickTableView,pickerC: pickersController,defaultValue: ["浙江","绍兴市","越城区"])
         
         
         let pickerIP = NSIndexPath(forRow: 0, inSection: 0)
