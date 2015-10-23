@@ -12,16 +12,6 @@ class ViewController: UIViewController,UITableViewDataSource, UITableViewDelegat
 
     @IBOutlet weak var pickTableView: UITableView!
     
-    var dataArray : NSArray = NSArray()
-    var cityArray : NSArray = NSArray()
-    var areaArray : NSArray = NSArray()
-    
-    var province : String = ""
-    var city : String = ""
-    var area : String = ""
-    
-    var finalValue : String = ""
-    
     var pickersController : PickerCellsController!
 
     
