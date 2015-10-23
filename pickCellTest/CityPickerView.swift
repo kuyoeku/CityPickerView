@@ -20,13 +20,11 @@ class CityPickerView: UIPickerView,UIPickerViewDelegate, UIPickerViewDataSource 
     
     var finalValue : String = ""
     
-    var defaultValue : String = ""
-    
     var tableView : UITableView!
     var pickerController : PickerCellsController!
     
     
-    func initData(tableView : UITableView, pickerC : PickerCellsController){
+    func initData(tableView : UITableView, pickerC : PickerCellsController,defaultValue : String = ""){
         self.delegate = self
         self.dataSource = self
         dataArray = AreaFactory.getAreaArray()
@@ -42,7 +40,50 @@ class CityPickerView: UIPickerView,UIPickerViewDelegate, UIPickerViewDataSource 
         area = areaArray.firstObject as! String
         
         if defaultValue != "" {
+            let str : [String] = defaultValue.componentsSeparatedByString(" ")
+            var provinceIndex : Int = 0
+            var cityIndex : Int = 0
+            var areaIndex : Int = 0
+            
+            dataArray.enumerateObjectsUsingBlock({
+                (item, idx, er) in
+                let currAreaModel : AreaModel = item as! AreaModel
+                if currAreaModel.state == str[0] {
+                    provinceIndex = idx
+                    self.cityArray = currAreaModel.cites
+                }
+                
+            })
+            
+            cityArray.enumerateObjectsUsingBlock({
+                (item, idx, er) in
+                let currCitiesModel : AreaCitiesModel = item as! AreaCitiesModel
+                if currCitiesModel.state == str[1] {
+                    cityIndex = idx
+                    self.areaArray = currCitiesModel.areas
+                }
+                
+            })
+            
+            areaArray.enumerateObjectsUsingBlock({
+                (item, idx, er) in
+                let currArea : String = item as! String
+                if currArea == str[2] {
+                    areaIndex = idx
+                }
+                
+            })
+            if str[1] == "" && cityIndex == 0 {
+                self.areaArray = NSArray()
+            }
+            if str[2] == "" && areaIndex == 0 {
+                self.area = ""
+            }
             finalValue = defaultValue
+            
+            self.selectRow(provinceIndex, inComponent: 0, animated: false)
+            self.selectRow(cityIndex, inComponent: 1, animated: false)
+            self.selectRow(areaIndex, inComponent: 2, animated: false)
         }else{
             finalValue = province + " " + city + " " + area
         }

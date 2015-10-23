@@ -23,6 +23,7 @@
 /* Begin PBXFileReference section */
 		94763A091BD9C62800CE3432 /* CityPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityPickerView.swift; sourceTree = "<group>"; };
 		94763A0C1BD9D1C600CE3432 /* AreaFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaFactory.swift; sourceTree = "<group>"; };
+		94763A0E1BD9DD9600CE3432 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		94A5474F1BD942A000807C5C /* pickCellTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pickCellTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A547521BD942A000807C5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94A547541BD942A000807C5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 				94A5475B1BD942A000807C5C /* LaunchScreen.storyboard */,
 				94A5475E1BD942A100807C5C /* Info.plist */,
 				94A5476C1BD942FC00807C5C /* pickCellTest-Bridging-Header.h */,
+				94763A0E1BD9DD9600CE3432 /* MyPlayground.playground */,
 			);
 			path = pickCellTest;
 			sourceTree = "<group>";
